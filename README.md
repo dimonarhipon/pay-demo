@@ -1,3 +1,3 @@
 # React + Vite
 
-## editorconfig + prettier + eslint
+## node v18.18.0 + editorconfig + prettier + eslint

@@ -1,0 +1,14 @@
+.cart {
+	--required-color: #EA7162;
+	--cart-border-color: #F2F2F2;
+	--tab-border-color: #ACBDCD;
+	--input-border-color: #ACBDCD;
+
+	--price-color: #FF5319;
+	--tab-color: #4169E1;
+	--text-color: #2E3A47;
+
+	width: 100%;
+	color: var(--text-color);
+  background-color: rgba(255, 255, 255, 0.87) ;
+}
