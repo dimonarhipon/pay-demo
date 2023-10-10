@@ -15,17 +15,18 @@ export const PayMethod = () => {
 	};
 
 	return (
-		<>
-			<h2>Payment method</h2>
+		<section>
+			<h2 className={styles.title}>Payment method</h2>
 
 			<form className={styles.form}>
 				<PaymentOptions />
 
 				<AcceptCheckbox />
-				<button type="submit" onClick={validateForm}>
+
+				<button type="submit" onClick={validateForm} className={styles.submit} tabIndex={7}>
 					Place order ($ 624.99)
 				</button>
 			</form>
-		</>
+		</section>
 	);
 };

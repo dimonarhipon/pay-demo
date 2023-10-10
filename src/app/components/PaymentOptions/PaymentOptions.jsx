@@ -17,21 +17,21 @@ export const PaymentOptions = () => {
 			<nav className={styles.navigation}>
 				<ul className={styles.list} onClick={handleTabClick} >
 					<li
-						className={cn(styles.listItem, activeTab === TabNames.Credit ? styles.listItemActive : '')}
+						className={cn(styles.listItem, activeTab === TabNames.Credit ? styles.active : '')}
 					>
-						<button type="button">{TabNames.Credit}</button>
+						<button className={styles.listButton} type="button">{TabNames.Credit}</button>
 					</li>
 
 					<li
-						className={cn(styles.listItem, activeTab === TabNames.Gift ? styles.listItemActive : '')}
+						className={cn(styles.listItem, activeTab === TabNames.Gift ? styles.active : '')}
 					>
-						<button type="button">{TabNames.Gift}</button>
+						<button className={styles.listButton} type="button">{TabNames.Gift}</button>
 					</li>
 
 					<li
-						className={cn(styles.listItem, activeTab === TabNames.PayPal ? styles.listItemActive : '')}
+						className={cn(styles.listItem, activeTab === TabNames.PayPal ? styles.active : '')}
 					>
-						<button type="button">{TabNames.PayPal}</button>
+						<button className={styles.listButton} type="button">{TabNames.PayPal}</button>
 					</li>
 				</ul>
 			</nav>

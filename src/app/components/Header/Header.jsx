@@ -4,9 +4,9 @@ import { Logo } from './image/Logo';
 export const Header = () => {
 	return (
 		<header className={styles.header} >
-			<div className={styles.logo}>
+			<a className={styles.logo} href="https://www.cs-cart.ru/" target="_blank" rel="noreferrer">
 				<Logo />
-			</div>
+			</a>
 		</header>
 	);
 };

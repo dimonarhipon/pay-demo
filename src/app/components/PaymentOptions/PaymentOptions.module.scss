@@ -1,0 +1,70 @@
+.navigation {
+	margin-bottom: 2.5%;
+
+	@media (max-width: 768px) {
+		margin-bottom: 20px;
+	}
+}
+.list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 32px;
+	margin: 0;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		gap: 20px;
+	}
+}
+
+.listItem {
+	flex: 200px 1 1;
+	background-color: var(--white-color);
+	color: var(--tab-color);
+	border: 1px solid var(--tab-border-color);
+
+	border-radius: 10px;
+	transition: 0.1s ease;
+
+	&.active {
+		transition: 0.1s ease;
+		border-color: var(--tab-color);
+		background-color: var(--tab-color);
+		color: var(--white-color);
+	}
+
+	&:hover,
+	&:focus {
+		transition: 0.1s ease;
+		border-color: var(--tab-color);
+		background-color: var(--tab-color);
+		color: var(--white-color);
+	}
+
+	@media (max-width: 768px) {
+		flex: auto;
+	}
+}
+
+.listButton {
+	display: block;
+	width: 100%;
+	padding: 23px;
+	text-align: center;
+
+	font-size: 2em;
+	border-radius: inherit;
+	border: none;
+	background-color: inherit;
+	color: inherit;
+	transition: 0.1s ease;
+	cursor: pointer;
+
+	@media (max-width: 480px) {
+		font-size: 1.5em;
+	}
+
+	@media (max-width: 480px) {
+		padding: 12px;
+	}
+}

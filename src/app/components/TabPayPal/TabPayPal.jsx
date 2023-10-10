@@ -1,7 +1,8 @@
+import styles from './TabPayPal.module.scss';
 
 export const TabPayPal = () => {
 	return (
-		<div>{'Content PayPal'}</div>
+		<div className={styles.content}>{'Content PayPal'}</div>
 	);
 };
 

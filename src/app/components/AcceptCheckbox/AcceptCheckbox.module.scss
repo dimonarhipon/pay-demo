@@ -1,0 +1,79 @@
+.сheckbox {
+	border: 1px solid var(--accept-border-color);
+	border-radius: 5px;
+	padding: 30px;
+	margin: 0;
+	margin-bottom: 3.55%;
+
+	font-size: 1.85em;
+	background-color: var(--accept-bg);
+
+	@media (max-width: 768px) {
+		padding: 15px;
+		font-size: 1.5em;
+	}
+}
+
+.checkboxPoint {
+	position: relative;
+	display: flex;
+	align-items: center;
+
+  min-width: 30px;
+  height: 30px;
+  border: 1px solid var(--tab-border-color);
+  box-sizing: border-box;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.7s linear;
+}
+
+.checkboxInput {
+  position: absolute;
+  appearance: none;
+
+	&:checked + .checkboxName .checkboxPoint::after {
+    position: absolute;
+    content: "";
+    width: 23px;
+    height: 17px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-color: var(--tab-border-color);
+		background-image: url("data:image/svg+xml,%3Csvg width='19' height='15' viewBox='0 0 19 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 11.718L1.3 5.26951L0.25 6.45739L7 14.0938L18.25 1.36648L17.2 0.09375L7 11.718Z' fill='%23FF5319'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+		background-size: cover;
+
+    cursor: pointer;
+    transition: all 0.7s linear;
+  }
+
+	&:focus + .checkboxName > .checkboxPoint {
+    outline: 1px solid var(--text-color);
+		transition: all 0.7s linear;
+  }
+
+  &[disabled] + .checkboxName {
+    opacity: 0.3;
+	}
+}
+
+.checkboxName {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 16px;
+	cursor: pointer;
+	color: #000;
+}
+
+.checkboxLink {
+	display: block;
+	line-height: 1;
+	text-decoration: none;
+	border-bottom: 1px dotted var(--text-color);
+	color: var(--text-color);
+}

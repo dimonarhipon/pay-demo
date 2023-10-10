@@ -3,6 +3,7 @@ import { TabGift } from '../TabGift/TabGift';
 import { TabPayPal } from '../TabPayPal/TabPayPal';
 import PropTypes from 'prop-types';
 import { TabNames } from '../../const';
+import styles from './Tabs.module.scss';
 
 export const Tabs = ({ activeTab }) => {
   const renderActiveTab = (tab) => {
@@ -19,7 +20,7 @@ export const Tabs = ({ activeTab }) => {
   };
 
   return (
-    <div>
+    <div className={styles.wrap}>
       {renderActiveTab(activeTab)}
     </div>
   );

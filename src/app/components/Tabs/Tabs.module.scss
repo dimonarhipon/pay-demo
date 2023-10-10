@@ -1,0 +1,11 @@
+.wrap {
+	margin-bottom: 5%;
+
+	@media (max-width: 1024px) {
+		margin-bottom: 50px;
+	}
+
+	@media (max-width: 650px) {
+		margin-bottom: 100px;
+	}
+}

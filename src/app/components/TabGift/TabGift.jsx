@@ -1,6 +1,7 @@
+import styles from './TabGift.module.scss';
 
 export const TabGift = () => {
 	return (
-		<div>{'Content Gift'}</div>
+		<div className={styles.content}>{'Content Gift'}</div>
 	);
 };
