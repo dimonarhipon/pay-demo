@@ -1,6 +1,7 @@
 import styles from './AcceptCheckbox.module.scss';
+import PropTypes from 'prop-types';
 
-export const AcceptCheckbox = () => {
+export const AcceptCheckbox = ({ formData, setFormData }) => {
 	return (
 		<p className={styles.сheckbox}>
 			<input
@@ -9,6 +10,11 @@ export const AcceptCheckbox = () => {
 				name="accept-checkbox"
 				value="accept"
 				className={styles.checkboxInput}
+				onChange={() => setFormData({
+					...formData,
+					accepted: !formData.accepted,
+				})}
+				checked={formData.accepted}
 				required
 				tabIndex={6}
 			/>
@@ -18,4 +24,9 @@ export const AcceptCheckbox = () => {
 			</label>
 		</p>
 	);
+};
+
+AcceptCheckbox.propTypes = {
+  formData: PropTypes.object,
+	setFormData: PropTypes.func,
 };

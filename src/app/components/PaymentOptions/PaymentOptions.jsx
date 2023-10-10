@@ -4,9 +4,8 @@ import { Tabs } from '../Tabs/Tabs';
 import cn from 'classnames';
 import styles from './PaymentOptions.module.scss';
 
-export const PaymentOptions = () => {
+export const PaymentOptions = (props) => {
 	const [activeTab, setActiveTab] = useState(TabNames.Credit);
-
 	const handleTabClick = (event) => {
     event.preventDefault();
     const value = event.target.textContent;
@@ -35,7 +34,7 @@ export const PaymentOptions = () => {
 					</li>
 				</ul>
 			</nav>
-			<Tabs activeTab={activeTab} />
+			<Tabs activeTab={activeTab} {...props} />
 		</>
 	);
 };
