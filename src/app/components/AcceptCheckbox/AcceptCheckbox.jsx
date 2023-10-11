@@ -1,32 +1,32 @@
+import { useState } from 'react';
 import styles from './AcceptCheckbox.module.scss';
-import PropTypes from 'prop-types';
+import { Modal } from '../Modal/Modal';
 
-export const AcceptCheckbox = ({ formData, setFormData }) => {
+export const AcceptCheckbox = () => {
+	const [openModal, setModalToggle] = useState(false);
+
+	const openModalHandler = (event) => {
+		event.stopPropagation();
+		setModalToggle(true);
+	};
 	return (
-		<p className={styles.сheckbox}>
-			<input
-				id="accept"
-				type="checkbox"
-				name="accept-checkbox"
-				value="accept"
-				className={styles.checkboxInput}
-				onChange={() => setFormData({
-					...formData,
-					accepted: !formData.accepted,
-				})}
-				checked={formData.accepted}
-				required
-				tabIndex={6}
-			/>
-			<label htmlFor="accept" className={styles.checkboxName}>
-				<span className={styles.checkboxPoint}></span>
-					I accept the <a className={styles.checkboxLink} href=""> Terms and Conditions</a>
-			</label>
-		</p>
-	);
-};
+		<>
+			<p className={styles.сheckbox}>
+				<input
+					id="accept"
+					type="checkbox"
+					name="accepted"
+					className={styles.checkboxInput}
+					required
+					tabIndex={6}
+				/>
+				<label htmlFor="accept" className={styles.checkboxName}>
+					<span className={styles.checkboxPoint}></span>
+						I accept the <button type="button" className={styles.openModal} onClick={openModalHandler}> Terms and Conditions</button>
+				</label>
+			</p>
 
-AcceptCheckbox.propTypes = {
-  formData: PropTypes.object,
-	setFormData: PropTypes.func,
+			<Modal open={openModal} title="Terms and Conditions" setModalToggle={setModalToggle} />
+		</>
+	);
 };

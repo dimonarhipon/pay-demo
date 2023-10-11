@@ -52,7 +52,7 @@
   }
 
 	&:focus + .checkboxName > .checkboxPoint {
-    outline: 1px solid var(--text-color);
+    outline: 2px solid var(--text-color);
 		transition: all 0.7s linear;
   }
 
@@ -70,10 +70,15 @@
 	color: #000;
 }
 
-.checkboxLink {
+.openModal {
 	display: block;
+	border: none;
+	padding: 0;
+	background-color: transparent;
+
 	line-height: 1;
 	text-decoration: none;
 	border-bottom: 1px dotted var(--text-color);
 	color: var(--text-color);
+	cursor: pointer;
 }

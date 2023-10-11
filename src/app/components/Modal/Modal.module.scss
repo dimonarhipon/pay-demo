@@ -1,0 +1,71 @@
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100dvh;
+  top: 0;
+  left: 0;
+  background-color: rgb(87 82 82 / 80%);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  width: 80%;
+
+	margin: 0;
+  background-color: #fff;
+  color: var(--color-text);
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  animation: show 0.5s ease;
+}
+
+.modalContent {
+
+	@media (max-height: 780px) {
+		max-height: 80dvh;
+		overflow-y: scroll;
+		scroll-behavior: smooth;
+	}
+}
+
+.modalTitle {
+  margin-top: 0;
+  width: 90%;
+	text-align: center;
+}
+
+.modalText {
+  margin: 0 0 20px;
+}
+
+.modalClose {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 10px;
+  line-height: 1;
+  background-color: var(--color-var);
+  color: var(--color-text);
+  border: 1px solid transparent;
+  transition: border-color 0.4s ease;
+	cursor: pointer;
+
+	&:hover {
+		border-color: var(--color-text);
+		transition: border-color 0.4s ease;
+	}
+}

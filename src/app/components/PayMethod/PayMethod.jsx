@@ -1,55 +1,42 @@
-import { useState } from 'react';
 import { PaymentOptions } from '../PaymentOptions/PaymentOptions';
 import { AcceptCheckbox } from '../AcceptCheckbox/AcceptCheckbox';
 import { Regular } from '../../const';
-
 import styles from './PayMethod.module.scss';
 
 export const PayMethod = () => {
-  const [formData, setFormData] = useState({
-    cardNumber: '',
-    cardExpiryMonth: '',
-		cardExpiryYear: '',
-		cardName: '',
-    cardCvc: '',
-    accepted: false
-  });
-
   const submitHandler = (event) => {
     event.preventDefault();
+		const formData = new FormData(event.target);
+		const body = Object.fromEntries(formData);
 
-    const validNumber = Regular.Number.test(formData.cardNumber);
-    const validExpiryMonth = Regular.ExpiryMonth.test(formData.cardExpiryMonth);
-		const validExpiryYear = Regular.ExpiryYear.test(formData.cardExpiryYear);
-		const validName = Regular.Name.test(formData.cardName);
-    const validCVC = Regular.Cvv.test(formData.cardCvc);
+    const validNumber = Regular.Number.test(body.cardNumber);
+    const validExpiryMonth = Regular.ExpiryMonth.test(body.cardExpiryMonth);
+		const validExpiryYear = Regular.ExpiryYear.test(body.cardExpiryYear);
+		const validName = Regular.Name.test(body.cardName);
+    const validCVC = Regular.Cvv.test(body.cardCvc);
 
-    if (validNumber && validExpiryMonth && validExpiryYear && validName && validCVC && formData.accepted) {
+		const inputCardExpiryMonth = document.querySelector('#card-mm');
+
+    if (validNumber && validExpiryMonth && validExpiryYear && validName && validCVC && body.accepted) {
       alert('Invalid form data');
-    } else {
-			alert('Error');
+			event.target.reset();
+    } else if (!validExpiryMonth) {
+			return inputCardExpiryMonth.setCustomValidity('month must be from 01 to 12');
+		} else {
+			alert('Error form data');
 		}
   };
-
-
-	const isValidForm =
-		formData.cardNumber.length &&
-		formData.cardExpiryMonth.length &&
-		formData.cardExpiryYear.length &&
-		formData.cardName.length &&
-		formData.cardCvc.length &&
-		formData.accepted;
 
 	return (
 		<section>
 			<h2 className={styles.title}>Payment method</h2>
 
 			<form className={styles.form} autoComplete="on" onSubmit={submitHandler}>
-				<PaymentOptions formData={formData} setFormData={setFormData} />
+				<PaymentOptions />
 
-				<AcceptCheckbox formData={formData} setFormData={setFormData} />
+				<AcceptCheckbox />
 
-				<button type="submit" className={styles.submit} tabIndex={7} disabled={!isValidForm}>
+				<button type="submit" className={styles.submit} tabIndex={7}>
 					Place order ($ 624.99)
 				</button>
 			</form>

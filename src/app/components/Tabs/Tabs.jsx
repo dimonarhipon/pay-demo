@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import { TabNames } from '../../const';
 import styles from './Tabs.module.scss';
 
-export const Tabs = ({ activeTab, formData, setFormData }) => {
+export const Tabs = ({ activeTab }) => {
   const renderActiveTab = (tab) => {
     switch (tab) {
       case TabNames.Credit:
-        return <TabCredit formData={formData} setFormData={setFormData} />;
+        return <TabCredit />;
       case TabNames.Gift:
         return <TabGift />;
       case TabNames.PayPal:
@@ -28,6 +28,4 @@ export const Tabs = ({ activeTab, formData, setFormData }) => {
 
 Tabs.propTypes = {
   activeTab: PropTypes.string.isRequired,
-  formData: PropTypes.object,
-	setFormData: PropTypes.func,
 };
