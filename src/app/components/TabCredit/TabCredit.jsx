@@ -2,16 +2,54 @@ import styles from './TabCredit.module.scss';
 import cn from 'classnames';
 import { Regular } from '../../const';
 import PropTypes from 'prop-types';
+import { useIMask } from 'react-imask';
 
 export const TabCredit = ({ formData, setFormData }) => {
-	const { cardNumber, cardExpiryBegin, cardExpiryEnd, cardName, cardCvc } = formData;
-	const formatCardNumberHandler = (value) => {
-		return value.replace(/\s/g, '').replace(/(\d{4})/g, '$1 ').trim();
-	};
+	const { cardNumber, cardExpiryMonth, cardExpiryYear, cardName, cardCvc } = formData;
+
+  const refNumber = useIMask({
+    mask: '0000 0000 0000 0000',
+    radix: ' ',
+		autofix: true
+  });
+
+	const refMount = useIMask({
+    mask: '00',
+		autofix: true,
+		blocks: {
+      '0': {
+        mask: /^\d$/,
+      },
+    },
+  });
+
+	const refYear = useIMask({
+    mask: '00',
+		autofix: true,
+		blocks: {
+      '0': {
+        mask: /^\d$/,
+      },
+    },
+  });
+
+	const nameRef = useIMask({
+		mask: Regular.Name,
+    autofix: true,
+		prepare: (str) => str.toUpperCase()
+  });
+
+	const refCvc = useIMask({
+    mask: '000',
+		autofix: true,
+		blocks: {
+      '0': {
+        mask: /^\d$/,
+      },
+    },
+  });
 
 	const cardNumberHandler = (event) => {
-		const formatted = formatCardNumberHandler(event.target.value);
-		event.target.value = formatted;
 		setFormData({
 			...formData,
 			cardNumber: event.target.value,
@@ -21,14 +59,14 @@ export const TabCredit = ({ formData, setFormData }) => {
 	const cardExpiryBeginHandler = (event) => {
 		setFormData({
 			...formData,
-			cardExpiryBegin: event.target.value,
+			cardExpiryMonth: event.target.value,
 		});
 	};
 
 	const cardExpiryEndHandler = (event) => {
 		setFormData({
 			...formData,
-			cardExpiryEnd: event.target.value,
+			cardExpiryYear: event.target.value,
 		});
 	};
 
@@ -55,14 +93,13 @@ export const TabCredit = ({ formData, setFormData }) => {
 					</label>
 					<input
 						id="card-number"
+						{...refNumber}
 						type="text"
 						name="card-number"
 						className={cn(styles.cardInput, styles.large)}
 						inputMode="numeric"
-						pattern={Regular.Number}
 						placeholder="0000 0000 0000 0000"
 						onChange={cardNumberHandler}
-						value={cardNumber}
 						maxLength={19}
 						tabIndex={1}
 						required
@@ -77,14 +114,13 @@ export const TabCredit = ({ formData, setFormData }) => {
 					<p className={styles.cardWrapInput}>
 						<input
 							id="card-mm"
+							{...refMount}
 							name="card-mm"
 							type="text"
 							className={styles.cardInput}
 							inputMode="numeric"
-							pattern={Regular.Expiry}
 							placeholder="00"
 							onChange={cardExpiryBeginHandler}
-							value={cardExpiryBegin}
 							maxLength={2}
 							tabIndex={2}
 							required
@@ -94,13 +130,12 @@ export const TabCredit = ({ formData, setFormData }) => {
 						<span className={styles.cardSegment}> / </span>
 						<input
 							id="card-yy"
+							{...refYear}
 							type="text"
 							className={styles.cardInput}
 							inputMode="numeric"
-							pattern={Regular.Expiry}
 							placeholder="00"
 							onChange={cardExpiryEndHandler}
-							value={cardExpiryEnd}
 							maxLength={2}
 							tabIndex={3}
 							required
@@ -114,11 +149,11 @@ export const TabCredit = ({ formData, setFormData }) => {
 					</label>
 					<input
 						id="card-holder"
+						{...nameRef}
 						type="text"
 						className={cn(styles.cardInput, styles.large)}
-						pattern={Regular.Name}
+						placeholder="ABCD"
 						onChange={cardNameHandler}
-						value={cardName}
 						minLength={1}
 						tabIndex={4}
 						required
@@ -134,14 +169,13 @@ export const TabCredit = ({ formData, setFormData }) => {
 					<p className={styles.cardBoxInput}>
 						<input
 							id="card-cvc"
+							{...refCvc}
 							type="text"
 							className={cn(styles.cardInput, styles.middle)}
 							maxLength="3"
 							inputMode="numeric"
-							pattern={Regular.Cvv}
 							title="enter 3 integers"
 							onChange={cardCvcHandler}
-							value={cardCvc}
 							placeholder="000"
 							required
 							tabIndex={5}
