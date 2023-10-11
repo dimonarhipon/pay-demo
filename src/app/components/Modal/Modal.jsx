@@ -13,7 +13,7 @@ export const Modal = ({ title, open, setModalToggle }) => {
     return () => {
       document.removeEventListener('keydown', handleEsc);
     };
-  }, []);
+  }, [setModalToggle]);
 
 	const closeModalHandler = () => {
 		setModalToggle(false);
